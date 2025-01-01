@@ -87,8 +87,8 @@ function showToast(message, type = "error") {
 }
 
 // Optional: Automatically redirect to login page if user is not authenticated
-auth.onAuthStateChanged(user => {
-    if (!user) {
-        window.location.href = "login.html"; // Redirect to login page if not authenticated
-    }
-});
+// auth.onAuthStateChanged(user => {
+//     if (!user) {
+//         window.location.href = "login.html"; // Redirect to login page if not authenticated
+//     }
+// });
