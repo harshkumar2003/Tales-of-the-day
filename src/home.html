@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tales Of the Daily</title>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/plugin/advancedFormat.js"></script>
+    <script>
+        dayjs.extend(dayjs_plugin_advancedFormat);
+    </script>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=logout" />
+</head>
+
+<body>
+
+    <div id="toast" class="hidden fixed bottom-0 left-0 w-full p-4 text-center text-white"></div>
+
+    <div class=" p-4 flex justify-between items-center  shadow-lg">
+        <h1 class="text-black text-2xl font-semibold">Tales of the Day</h1>
+        <!-- <button id="logoutBtn" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition">
+            Logout
+        </button> -->
+        <span class="material-symbols-outlined  text-red-800 " id="logoutBtn">
+            logout
+            </span>
+    </div>
+
+    <div class="pt-4  md:flex md:justify-between md:pl-4  lg:flex lg:justify-between lg:pl-8 xl:flex xl:justify-between xl:pl-8 2xl:flex 2xl:justify-between 2xl:pl-8  ">
+        <div class="p-6 rounded-[20px] ">
+            <h1 class="text-black text-3xl font-semibold text-center mb-4">Your Daily Tales</h1>
+            <form id="dailyTaleForm">
+                <textarea id="taleContent" rows="4" class="w-full p-4 border border-gray-300 rounded-md mb-4"
+                    placeholder="Write your tale..."></textarea>
+                <button type="submit" class="w-full  bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">Post Tale</button>
+            </form>
+        </div>
+        
+
+        <div class="md:pr-8 lg:pr-8 xl:pr-8 2xl:pr-8">
+            <div class="border-1 border-white w-[400px] mx-auto flex justify-center items-center py-8">
+                <div class="max-w-4xl mx-auto py-8 w-full">
+                    <div class="flex items-center justify-between mb-6">
+                        <button id="prevMonth" class="text-xl font-semibold text-gray-700 hover:text-gray-900">Prev</button>
+                        <h2 id="monthName" class="text-3xl font-semibold text-gray-800">January 2025</h2>
+                        <button id="nextMonth" class="text-xl font-semibold text-gray-700 hover:text-gray-900">Next</button>
+                    </div>
+    
+                    <div class="grid grid-cols-7 gap-4 text-center mb-6">
+                        <div class="font-semibold text-gray-700 py-2 bg-blue-100 rounded-lg border border-gray-300">Sun</div>
+                        <div class="font-semibold text-gray-700 py-2 bg-blue-100 rounded-lg border border-gray-300">Mon</div>
+                        <div class="font-semibold text-gray-700 py-2 bg-blue-100 rounded-lg border border-gray-300">Tue</div>
+                        <div class="font-semibold text-gray-700 py-2 bg-blue-100 rounded-lg border border-gray-300">Wed</div>
+                        <div class="font-semibold text-gray-700 py-2 bg-blue-100 rounded-lg border border-gray-300">Thu</div>
+                        <div class="font-semibold text-gray-700 py-2 bg-blue-100 rounded-lg border border-gray-300">Fri</div>
+                        <div class="font-semibold text-gray-700 py-2 bg-blue-100 rounded-lg border border-gray-300">Sat</div>
+                    </div>
+    
+                    <div id="calendarDays" class="grid grid-cols-7 gap-4 text-center"></div>
+                </div>
+            </div>
+    
+            <div class="mx-auto rounded-[20px] bg-transparent p-6">
+                <div id="talesList" class="max-w-md mx-auto mt-10 bg-white rounded-[20px] p-6 shadow-xl">
+                    <h2 class="text-2xl text-center font-semibold text-gray-800 mb-4">Your Tales</h2>
+                    <div id="talesContainer" class="mt-4 space-y-6 px-6 py-4"></div>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore-compat.js"></script>
+
+    <script src="js/app.js"></script>
+        
+
+</body>
+
+</html>
