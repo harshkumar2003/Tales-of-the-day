@@ -93,17 +93,3 @@ function showToast(message, type = "error") {
 //     }
 // });
 
-
-// Function to encrypt data
-function encryptData(data) {
-    const secretKey = 'your_generated_secret_key'; // This can be fetched from Firebase functions or hardcoded temporarily
-    return CryptoJS.AES.encrypt(data, secretKey).toString();
-}
-
-// Function to decrypt data
-function decryptData(encryptedData) {
-    const secretKey = 'your_generated_secret_key'; // This can be fetched from Firebase functions or hardcoded temporarily
-    const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
-    return bytes.toString(CryptoJS.enc.Utf8);  // Convert the bytes to a string
-}
-

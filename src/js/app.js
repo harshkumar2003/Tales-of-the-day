@@ -13,6 +13,21 @@ const db = firebase.firestore();
 // Include the CryptoJS library for encryption
 const CryptoJS = window.CryptoJS; // Ensure CryptoJS is available
 
+function showToast(message, type = "error") {
+    const toast = document.getElementById("toast");
+
+    // Set the message and styling based on type
+    toast.textContent = message;
+    toast.classList.remove("hidden", "bg-green-500", "bg-red-500");
+    toast.classList.add(type === "success" ? "bg-green-500" : "bg-red-500");
+
+    // Show toast and auto-hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("hidden");
+    }, 3000);
+}
+
+
 // Listen for user authentication
 auth.onAuthStateChanged((user) => {
     if (!user) {
@@ -175,6 +190,7 @@ document.getElementById("nextMonth").addEventListener("click", function () {
 // Initial render
 renderCalendar(currentDate);
 
+
 document.getElementById('logoutBtn').addEventListener('click', function() {
     firebase.auth().signOut().then(function() {
         window.location.href = 'login.html'; // Redirect to login page after logout
@@ -182,3 +198,7 @@ document.getElementById('logoutBtn').addEventListener('click', function() {
         console.error('Error logging out: ', error);
     });
 });
+
+
+
+
