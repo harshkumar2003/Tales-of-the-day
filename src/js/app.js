@@ -11,13 +11,13 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // Listen for user authentication
-// auth.onAuthStateChanged((user) => {
-//     if (!user) {
-//         window.location.href = "login.html"; // Redirect to login if not authenticated
-//     } else {
-//         loadTales(dayjs()); // Load the tales for the current date when the user is logged in
-//     }
-// });
+auth.onAuthStateChanged((user) => {
+    if (!user) {
+        window.location.href = "login.html"; // Redirect to login if not authenticated
+    } else {
+        loadTales(dayjs()); // Load the tales for the current date when the user is logged in
+    }
+});
 
 // Handle submitting the daily tale
 document
