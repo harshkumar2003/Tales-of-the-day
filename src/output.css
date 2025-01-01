@@ -1146,6 +1146,14 @@ video {
     margin: 2.5rem;
   }
 
+  .sm\:w-\[\] {
+    width: ;
+  }
+
+  .sm\:w-\[350px\] {
+    width: 350px;
+  }
+
   .sm\:rounded-lg {
     border-radius: 0.5rem;
   }
