@@ -10,6 +10,9 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+// Include the CryptoJS library for encryption
+const CryptoJS = window.CryptoJS; // Ensure CryptoJS is available
+
 // Listen for user authentication
 auth.onAuthStateChanged((user) => {
     if (!user) {
@@ -32,10 +35,14 @@ document
         }
 
         const user = auth.currentUser;
+        
+        // Encrypt the tale content before storing it in Firestore
+        const encryptedTale = CryptoJS.AES.encrypt(taleContent, 'love_is_blind_123456789').toString();
+
         db.collection("tales")
             .add({
                 userId: user.uid,  // Add the userId field to each tale
-                taleContent: taleContent,
+                taleContent: encryptedTale,  // Store the encrypted content
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             })
             .then(() => {
@@ -65,10 +72,14 @@ function loadTales(selectedDate) {
             talesContainer.innerHTML = ''; // Clear existing tales
             querySnapshot.forEach((doc) => {
                 const postData = doc.data();
+                
+                // Decrypt the tale content before displaying
+                const decryptedTale = CryptoJS.AES.decrypt(postData.taleContent, 'love_is_blind_123456789').toString(CryptoJS.enc.Utf8);
+
                 const postElement = document.createElement("div");
                 postElement.classList.add("post");
                 postElement.innerHTML = `
-                    <p><strong>${postData.taleContent}</strong></p>
+                    <p><strong>${decryptedTale}</strong></p>
                     <p>Posted on: ${postData.createdAt.toDate().toLocaleString()}</p>
                 `;
                 talesContainer.appendChild(postElement);
@@ -163,8 +174,6 @@ document.getElementById("nextMonth").addEventListener("click", function () {
 
 // Initial render
 renderCalendar(currentDate);
-
-
 
 document.getElementById('logoutBtn').addEventListener('click', function() {
     firebase.auth().signOut().then(function() {
